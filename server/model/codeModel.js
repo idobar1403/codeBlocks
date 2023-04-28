@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 
 const codeSchema = mongoose.Schema(
     {
@@ -10,10 +10,13 @@ const codeSchema = mongoose.Schema(
         },
         solution: {
             type: String
+        },
+        description:{
+            type: String
         }
     }
 )
 
-const codeModel = mongoose.model('Code', codeSchema);
+const CodeModel = mongoose.model('Code', codeSchema);
 
-module.exports = codeModel;
+export default CodeModel;
