@@ -12,6 +12,9 @@ router.get("/Codes", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+router.get('/', (req, res) => {
+  res.sendFile(__dirname + '../../client_fix/public/index.html');
+});
 
 router.get("/Codes/:titleName", (req, res) => {
   const titleName = req.params.titleName;
