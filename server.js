@@ -37,6 +37,8 @@ io.on("connection", (socket) => {
   }
   socket.on("send-message", (message) => {
     const mentorSocket = connectedClients[0];
+    setTimeout(() => {
+    }, 500);
     mentorSocket.emit("update", message );
   });
   //update values when switch editors
