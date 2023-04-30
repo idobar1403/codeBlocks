@@ -2,14 +2,11 @@ import express from "express";
 import userController from "./controllers/userController.js";
 import cors from "cors";
 import dbConnect from "./db/db_connect.js";
-import http from "http";
 import { Server } from "socket.io";
 
 
-
-
 const PORT = process.env.PORT || 8080;
-const io = new Server(process.env.Port);
+const io = new Server(PORT);
 
 const connectedClients = [];
 var teacherNotified = false;
@@ -57,7 +54,6 @@ app.use(express.json());
 app.use(userController);
 
 app.listen(PORT , function () {
-  // console.log(process.env.Port);
   console.log("Server started listening on port " + PORT);
 });
 
