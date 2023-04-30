@@ -53,6 +53,7 @@ app.use(express.json())
 app.use(userController)
 
 server.listen(process.env.Port || 3000 , function () {
+  console.log(procces.env.Port);
   console.log("Server started listening");
 });
 
