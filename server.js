@@ -5,6 +5,7 @@ import dbConnect from "./db/db_connect.js";
 import http from "http";
 import { Server } from "socket.io";
 
+const PORT = process.env.PORT || 8080;
 const server = http.createServer()
 const io = new Server(server);
 const connectedClients = [];
@@ -52,8 +53,8 @@ app.use(cors());
 app.use(express.json())
 app.use(userController)
 
-server.listen(process.env.Port || 3000 , function () {
-  console.log(procces.env.Port);
+server.listen(PORT , function () {
+  // console.log(process.env.Port);
   console.log("Server started listening");
 });
 
