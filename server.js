@@ -9,7 +9,7 @@ import http from "http";
 
 const PORT = process.env.PORT || 3000;
 const server = http.createServer();
-const io = server
+const io = new Server(server, {path: ""});
 
 const connectedClients = [];
 var teacherNotified = false;
@@ -53,11 +53,10 @@ io.on("connection", (socket) => {
 //middleware
 const app = express();
 app.use(cors());
-app.use(express.static(__dirname + "../codeBlocks-client/build"))
 app.use(express.json());
 app.use(userController);
 
-app.listen(PORT , function () {
+server.listen(PORT , function () {
   console.log("Server started listening on port " + PORT);
 });
 
