@@ -5,8 +5,15 @@ import dbConnect from "./db/db_connect.js";
 import http from "http";
 import { Server } from "socket.io";
 
+//middleware
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(userController);
+
+
 const PORT = process.env.PORT || 8080;
-const server = http.createServer()
+const server = http.createServer(app);
 const io = new Server(server);
 const connectedClients = [];
 var teacherNotified = false;
@@ -47,11 +54,7 @@ io.on("connection", (socket) => {
 });
 
 
-//middleware
-const app = express()
-app.use(cors());
-app.use(express.json())
-app.use(userController)
+
 
 server.listen(PORT , function () {
   // console.log(process.env.Port);
