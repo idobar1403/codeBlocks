@@ -9,7 +9,7 @@ import http from "http";
 
 const PORT = process.env.PORT || 3000;
 const server = http.createServer();
-const io = new Server(server, {path: ""});
+const io = new Server(server, {path: "/"});
 
 const connectedClients = [];
 var teacherNotified = false;
@@ -56,7 +56,7 @@ app.use(cors());
 app.use(express.json());
 app.use(userController);
 
-server.listen(PORT , function () {
+app.listen(PORT , function () {
   console.log("Server started listening on port " + PORT);
 });
 
