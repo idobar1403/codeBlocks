@@ -51,7 +51,6 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     teacherNotified = false;
     connectedClients.splice(connectedClients.indexOf(socket), 1);
-    if
   });
 });
 
