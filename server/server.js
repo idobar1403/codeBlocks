@@ -6,7 +6,7 @@ import { Server } from "socket.io";
 
 const io = new Server(8000);
 const connectedClients = [];
-
+var teacherNotified = false;
 // Listen for new socket connections
 io.on("connection", (socket) => {
   // Add the new socket to the connectedClients array
@@ -14,10 +14,16 @@ io.on("connection", (socket) => {
   //for the first user set read only as true
   if(connectedClients.length === 1){
     socket.emit("set-read-only", "" );
-  }else {
+  }else {  
     //set read only as true for first user and false otherwise
     connectedClients[0].emit("set-read-only", "" );
     socket.emit("set-read-only-false","");
+  }
+  
+  //alert for the first client that he is the teachr
+  if(!teacherNotified && connectedClients.length > 0){
+    connectedClients[0].emit("teacher-notification");
+    teacherNotified = true;
   }
   socket.on("send-message", (message) => {
     const mentorSocket = connectedClients[0];
