@@ -58,7 +58,7 @@ io.on("connection", (socket) => {
 
 server.listen(PORT , function () {
   // console.log(process.env.Port);
-  console.log("Server started listening");
+  console.log("Server started listening on port " + PORT);
 });
 
 dbConnect();
