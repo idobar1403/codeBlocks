@@ -11,8 +11,6 @@ const PORT = process.env.PORT || 3000;
 const server = http.createServer();
 const io = new Server(server, {
   cors: {
-    origin: "https://codeblocksserver.herokuapp.com/",
-    methods: ["GET", "POST"],
     credentials: true
   }
 });
