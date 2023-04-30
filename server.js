@@ -52,7 +52,7 @@ app.use(cors());
 app.use(express.json())
 app.use(userController)
 
-app.listen(process.env.Port || 3000 , function () {
+server.listen(process.env.Port || 3000 , function () {
   console.log("Server started listening");
 });
 
