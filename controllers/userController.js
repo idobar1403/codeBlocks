@@ -12,7 +12,7 @@ router.get("/Codes", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-router.get('/'), (req, res) => {
+router.get("/"), (req, res) => {
   res.send("server is up and running");
 }
 router.get("/Codes/:titleName", async (req, res) => {
