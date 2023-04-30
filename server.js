@@ -5,8 +5,13 @@ import dbConnect from "./db/db_connect.js";
 import { Server } from "socket.io";
 import http from "http";
 
-const PORT = process.env.PORT || 8080;
-const server = http.createServer();
+//middleware
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(userController);
+
+const server = http.createServer(app);
 const io = new Server(server);
 
 const connectedClients = [];
@@ -49,13 +54,10 @@ io.on("connection", (socket) => {
 });
 
 
-//middleware
-const app = express();
-app.use(cors());
-app.use(express.json());
-app.use(userController);
 
-app.listen(PORT , function () {
+const PORT = process.env.PORT || 8080;
+
+server.listen(PORT , function () {
   console.log("Server started listening on port " + PORT);
 });
 
