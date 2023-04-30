@@ -7,11 +7,7 @@ import http from "http";
 
 //middleware
 const app = express();
-app.use(cors({
-  origin: "https://codeblocksserver.herokuapp.com/",
-  methods: ["GET", "POST"],
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 app.use(userController);
 
@@ -53,9 +49,7 @@ io.on("connection", (socket) => {
 
   // Remove the disconnect socket from the connectedClients array
   socket.on("disconnect", () => {
-    if(connectedClients.indexOf(socket) === 0){
-      teacherNotified = false;
-    }
+    teacherNotified = false;
     connectedClients.splice(connectedClients.indexOf(socket), 1);
     if
   });
