@@ -9,29 +9,30 @@ const connectedClients = [];
 
 // Listen for new socket connections
 io.on("connection", (socket) => {
-  // send a message to the client
-  // socket.emit("hello from server", 1, "2", { 3: Buffer.from([4]) });
   // Add the new socket to the connectedClients array
   connectedClients.push(socket);
+  //for the first user set read only as true
   if(connectedClients.length === 1){
-    console.log("emitt");
+    socket.emit("set-read-only", "" );
+  }else {
+    //set read only as true for first user and false otherwise
     connectedClients[0].emit("set-read-only", "" );
+    socket.emit("set-read-only-false","");
   }
   socket.on("send-message", (message) => {
-    // console.log(message);
     const mentorSocket = connectedClients[0];
-    // console.log("length" + connectedClients.length);
-      // console.log(mentorSocket);
-    // Send a message to the mentor client
     mentorSocket.emit("update", message );
   });
-  // receive a message from the client
-  socket.on("hello from client", (...args) => {
-    // ...
+  //update values when switch editors
+  socket.on("set-read-only-values", () => {
+    if(connectedClients.length > 1){
+      connectedClients[0].emit("set-read-only", "" );
+      connectedClients[1].emit("set-read-only-false","");
+    }
   });
 
   // Remove the disconnect socket from the connectedClients array
-  socket.on('disconnect', () => {
+  socket.on("disconnect", () => {
     connectedClients.splice(connectedClients.indexOf(socket), 1);
   });
 });

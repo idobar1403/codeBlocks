@@ -16,17 +16,13 @@ router.get("/Codes", async (req, res) => {
 router.get("/Codes/:titleName", async (req, res) => {
   const titleName = req.params.titleName;
   // Find the code in the MongoDB database by its title
-  await CodeModel.findOne({ title: titleName })
-    .then((code) => {
-      if (!code) {
-        return res.status(404).json({ message: "Code not found" });
-      }
-      res.json(code);
-    })
-    .catch((err) => {
+  try{
+  const code = await CodeModel.findOne({ title: titleName });
+  res.send(code);
+  } catch(error){
       console.log(err);
-      res.status(500).json({ message: "Server error" });
-    });
+      res.status(500).send("Server error" );
+    };
 });
 
 router.post("/Codes", async (req, res) => {
