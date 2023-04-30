@@ -12,7 +12,9 @@ router.get("/Codes", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-
+router.get('/'), (req, res) => {
+  res.send("server is up and running");
+}
 router.get("/Codes/:titleName", async (req, res) => {
   const titleName = req.params.titleName;
   // Find the code in the MongoDB database by its title
