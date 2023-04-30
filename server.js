@@ -1,10 +1,10 @@
 import express from "express";
 import userController from "./server/controllers/userController.js";
 import cors from "cors";
-import dbConnect from "./server/db/db_connect.js";
+import dbConnect from "./db/db_connect.js";
 import { Server } from "socket.io";
 
-const io = new Server(process.env.Port);
+const io = new Server();
 const connectedClients = [];
 var teacherNotified = false;
 // Listen for new socket connections
