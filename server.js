@@ -3,11 +3,9 @@ import userController from "./controllers/userController.js";
 import cors from "cors";
 import dbConnect from "./db/db_connect.js";
 import { Server } from "socket.io";
-import http from "http";
 
 
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const server = http.createServer();
 const io = new Server(server);
 
@@ -15,6 +13,7 @@ const connectedClients = [];
 var teacherNotified = false;
 // Listen for new socket connections
 io.on("connection", (socket) => {
+  console.log("connected");
   // Add the new socket to the connectedClients array
   connectedClients.push(socket);
   //for the first user set read only as true
