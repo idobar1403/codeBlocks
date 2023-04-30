@@ -3,7 +3,7 @@ import userController from "./controllers/userController.js";
 import cors from "cors";
 import dbConnect from "./db/db_connect.js";
 import { Server } from "socket.io";
-
+import http from "http";
 
 const PORT = process.env.PORT || 8080;
 const server = http.createServer();
