@@ -5,8 +5,9 @@ import dbConnect from "./db/db_connect.js";
 import { Server } from "socket.io";
 
 
-const PORT = process.env.PORT || 8080;
-const io = new Server(PORT);
+const PORT = process.env.PORT || 3000;
+
+const io = new Server(process.env.PORT);
 
 const connectedClients = [];
 var teacherNotified = false;
