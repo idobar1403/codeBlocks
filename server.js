@@ -49,7 +49,11 @@ io.on("connection", (socket) => {
 
   // Remove the disconnect socket from the connectedClients array
   socket.on("disconnect", () => {
+    if(connectedClients.indexOf(socket) === 0){
+      teacherNotified = false;
+    }
     connectedClients.splice(connectedClients.indexOf(socket), 1);
+    if
   });
 });
 
