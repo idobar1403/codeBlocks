@@ -4,7 +4,7 @@ import cors from "cors";
 import dbConnect from "./db/db_connect.js";
 import { Server } from "socket.io";
 
-const io = new Server(8000);
+const io = new Server(process.env.Port || 8000);
 const connectedClients = [];
 var teacherNotified = false;
 // Listen for new socket connections
