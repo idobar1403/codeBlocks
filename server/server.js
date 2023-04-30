@@ -4,7 +4,7 @@ import cors from "cors";
 import dbConnect from "./db/db_connect.js";
 import { Server } from "socket.io";
 
-const io = new Server(process.env.Port || 8000);
+const io = new Server(process.env.Port);
 const connectedClients = [];
 var teacherNotified = false;
 // Listen for new socket connections
@@ -50,8 +50,8 @@ app.use(cors());
 app.use(express.json())
 app.use(userController)
 
-app.listen(process.env.Port || 3000, function () {
-  console.log("Server started listening on port 3000");
+app.listen(process.env.Port , function () {
+  console.log("Server started listening");
 });
 
 dbConnect();
