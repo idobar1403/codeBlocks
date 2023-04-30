@@ -7,7 +7,11 @@ import http from "http";
 
 //middleware
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://codeblocksserver.herokuapp.com/",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(userController);
 
